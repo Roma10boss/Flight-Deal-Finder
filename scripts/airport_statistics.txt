@@ -1,0 +1,49 @@
+Total airports: 9090
+Total countries/territories: 240
+
+Top 20 countries by airport count:
+United States: 2037
+Australia: 617
+Canada: 485
+Papua New Guinea: 393
+Brazil: 311
+China: 280
+Indonesia: 231
+Russia: 207
+Colombia: 165
+India: 149
+France: 123
+Argentina: 104
+United Kingdom: 104
+Mexico: 99
+Japan: 96
+Germany: 89
+South Africa: 88
+Iran: 76
+Philippines: 75
+Madagascar: 69
+
+Caribbean airports:
+BGI - Grantley Adams International Airport (Bridgetown, Barbados)
+QPD - Pinar del Río Airport (Cuba, Barbados)
+QSN - San Nicolás de Bari Airport (Cuba, Barbados)
+BBR - Baillif Airport (Basse-Terre, Guadeloupe)
+GBJ - Marie-Galante Airport (Les Bases) (Grand-Bourg, Guadeloupe)
+DSD - La Désirade Airport (Grande-Anse Airport) (La Désirade, Guadeloupe)
+PTP - Pointe-à-Pitre International Airport (Le Raizet Airport) (Pointe-à-Pitre, Guadeloupe)
+SFC - Saint-François Airport (Saint-François, Guadeloupe)
+LSS - Les Saintes Airport (Terre-de-Haut Island, Guadeloupe)
+CAP - Hugo Chávez International Airport (Cap-Haïtien, Haiti)
+JAK - Jacmel Airport (Jacmel, Haiti)
+JEE - Jérémie Airport (Jérémie, Haiti)
+CYA - Antoine-Simon Airport (Les Cayes, Haiti)
+PAP - Toussaint L'Ouverture International Airport (Port-au-Prince, Haiti)
+PAX - Port-de-Paix Airport (Port-de-Paix, Haiti)
+KIN - Norman Manley International Airport (Kingston, Jamaica)
+KTP - Tinson Pen Aerodrome (Kingston, Jamaica)
+MVJ - 18°01′11″N 077°29′42″W﻿ / ﻿18.01972°N 77.49500°W﻿ / 18.01972; -77.49500﻿ (Marlboro Airport) (Mandeville, Jamaica)
+MBJ - Sangster International Airport (Montego Bay, Jamaica)
+NEG - Negril Aerodrome (Negril, Jamaica)
+OCJ - Ian Fleming International Airport (Ocho Rios, Jamaica)
+POT - Ken Jones Aerodrome (Port Antonio, Jamaica)
+FDF - Martinique Aimé Césaire International Airport (Fort-de-France, Martinique)

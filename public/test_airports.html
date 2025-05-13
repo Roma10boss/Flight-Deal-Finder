@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Airport Loading</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .stats { background: #f0f0f0; padding: 15px; margin: 20px 0; }
+        .country-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .search { margin: 20px 0; }
+        input { padding: 10px; width: 300px; }
+        .results { margin-top: 20px; }
+        .airport { padding: 5px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Airport Data Test</h1>
+    <div id="status">Loading airports...</div>
+    
+    <div class="stats">
+        <h2>Statistics</h2>
+        <div id="stats"></div>
+    </div>
+    
+    <div class="search">
+        <h2>Search Airports</h2>
+        <input type="text" id="searchInput" placeholder="Search for airport, city, or country..." oninput="searchAirports()">
+        <div id="results" class="results"></div>
+    </div>
+    
+    <div>
+        <h2>Caribbean Airports</h2>
+        <div id="caribbean"></div>
+    </div>
+    
+    <div>
+        <h2>Small Island Nations</h2>
+        <div id="islands"></div>
+    </div>
+    
+    <script src="airportData.js"></script>
+    <script>
+        let airports = [];
+        
+        // Check if airports loaded
+        if (window.AIRPORT_DATA) {
+            airports = window.AIRPORT_DATA;
+            document.getElementById('status').textContent = `Successfully loaded ${airports.length} airports`;
+            
+            // Show statistics
+            const countries = {};
+            airports.forEach(airport => {
+                countries[airport.country] = (countries[airport.country] || 0) + 1;
+            });
+            
+            const statsHtml = `
+                <p>Total airports: ${airports.length}</p>
+                <p>Total countries/territories: ${Object.keys(countries).length}</p>
+                <p>Average airports per country: ${(airports.length / Object.keys(countries).length).toFixed(1)}</p>
+            `;
+            document.getElementById('stats').innerHTML = statsHtml;
+            
+            // Show Caribbean airports
+            const caribbean = airports.filter(a => 
+                ['Guadeloupe', 'Haiti', 'Martinique', 'Jamaica', 'Barbados', 'Dominican Republic', 'Puerto Rico'].some(c => a.country.includes(c))
+            );
+            
+            let caribbeanHtml = `<p>Found ${caribbean.length} Caribbean airports:</p><div class="country-list">`;
+            const caribbeanByCountry = {};
+            caribbean.forEach(airport => {
+                if (!caribbeanByCountry[airport.country]) {
+                    caribbeanByCountry[airport.country] = [];
+                }
+                caribbeanByCountry[airport.country].push(airport);
+            });
+            
+            Object.keys(caribbeanByCountry).sort().forEach(country => {
+                caribbeanHtml += `<div><strong>${country} (${caribbeanByCountry[country].length}):</strong><br>`;
+                caribbeanByCountry[country].forEach(airport => {
+                    caribbeanHtml += `${airport.code} - ${airport.city}<br>`;
+                });
+                caribbeanHtml += '</div>';
+            });
+            caribbeanHtml += '</div>';
+            document.getElementById('caribbean').innerHTML = caribbeanHtml;
+            
+            // Show island nations
+            const islands = airports.filter(a => 
+                ['Fiji', 'Maldives', 'Seychelles', 'Mauritius', 'French Polynesia', 'Cook Islands', 'Samoa', 'Tonga'].some(c => a.country.includes(c))
+            );
+            
+            let islandsHtml = `<p>Found ${islands.length} airports in small island nations:</p><div class="country-list">`;
+            const islandsByCountry = {};
+            islands.forEach(airport => {
+                if (!islandsByCountry[airport.country]) {
+                    islandsByCountry[airport.country] = [];
+                }
+                islandsByCountry[airport.country].push(airport);
+            });
+            
+            Object.keys(islandsByCountry).sort().forEach(country => {
+                islandsHtml += `<div><strong>${country} (${islandsByCountry[country].length}):</strong><br>`;
+                islandsByCountry[country].forEach(airport => {
+                    islandsHtml += `${airport.code} - ${airport.city}<br>`;
+                });
+                islandsHtml += '</div>';
+            });
+            islandsHtml += '</div>';
+            document.getElementById('islands').innerHTML = islandsHtml;
+            
+        } else {
+            document.getElementById('status').textContent = 'Failed to load airports!';
+        }
+        
+        // Search function
+        function searchAirports() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (query.length < 2) {
+                document.getElementById('results').innerHTML = '';
+                return;
+            }
+            
+            const matches = airports.filter(airport => 
+                airport.code.toLowerCase().includes(query) ||
+                airport.name.toLowerCase().includes(query) ||
+                airport.city.toLowerCase().includes(query) ||
+                airport.country.toLowerCase().includes(query)
+            ).slice(0, 20);
+            
+            let html = '<div>';
+            matches.forEach(airport => {
+                html += `<div class="airport">${airport.code} - ${airport.name} (${airport.city}, ${airport.country})</div>`;
+            });
+            html += '</div>';
+            
+            document.getElementById('results').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

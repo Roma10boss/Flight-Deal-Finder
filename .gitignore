@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+scripts/airport_env/
+
+# Environment variables
+.env
+
+# Data files
+data/
+
+# Backup files
+backups/
+
+# Python
+__pycache__/
+*.pyc
+scripts/venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated files
+scripts/airports.json
+scripts/airportData.js
